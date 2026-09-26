@@ -3,7 +3,7 @@ const formData = new FormData();
 formData.append("email", "Hi, Hacker");
 formData.append("password", "");
 
-fetch("http://127.0.0.1:5001/profile", {
+fetch("/profile", {
   method: "POST",
   body: formData
 })
