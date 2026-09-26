@@ -1,22 +1,13 @@
-async function sendRequest(url, data) {
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(data)
-  });
+const formData = new FormData();
 
-  if (!response.ok) {
-    throw new Error(`HTTP error: ${response.status}`);
-  }
+formData.append("email", "Hi, Hacker");
+formData.append("password", "");
 
-  return await response.json();
-}
-
-sendRequest("http://localhost:5001/profile", {
-  email: "Hi, Hacker",
-  password: ""
+fetch("http://127.0.0.1:5001/profile", {
+  method: "POST",
+  body: formData
 })
-  .then(result => console.log(result))
-  .catch(error => console.error(error));
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+  });
