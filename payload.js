@@ -1,19 +1,22 @@
-async function modifyProfile(email, password = "") {
-  const response = await fetch("/profile", {
+async function sendRequest(url, data) {
+  const response = await fetch(url, {
     method: "POST",
     headers: {
-      "Content-Type": "application/x-www-form-urlencoded"
+      "Content-Type": "application/json"
     },
-    body: new URLSearchParams({
-      email: email,
-      password: password
-    }),
-    credentials: "same-origin",
-    redirect: "manual"
+    body: JSON.stringify(data)
   });
 
-  console.log("Status:", response.status);
-  console.log("Location:", response.headers.get("Location"));
+  if (!response.ok) {
+    throw new Error(`HTTP error: ${response.status}`);
+  }
+
+  return await response.json();
 }
 
-modifyProfile("hacker@gmail.com");
+sendRequest("https://example.com/api/users", {
+  email: "Hi, Hacker",
+  password: ""
+})
+  .then(result => console.log(result))
+  .catch(error => console.error(error));
