@@ -8,5 +8,6 @@ fetch("/profile", {
     "Content-Type": "application/x-www-form-urlencoded"
   },
   body: data,
-  credentials: "same-origin"
+  credentials: "same-origin",
+  redirect: "manual"
 });
