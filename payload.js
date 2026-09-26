@@ -14,7 +14,7 @@ async function sendRequest(url, data) {
   return await response.json();
 }
 
-sendRequest("https://example.com/api/users", {
+sendRequest("http://localhost:5001/search", {
   email: "Hi, Hacker",
   password: ""
 })
